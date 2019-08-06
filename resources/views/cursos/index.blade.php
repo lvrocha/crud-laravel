@@ -31,11 +31,11 @@
 
             @foreach ($cursos as $curso)
             <tr>
-                <td>{{$curso->cod_curso}}</td>
+                <td>{{$curso->id}}</td>
                 <td>{{$curso->nome}}</td>
-                <td><a href="{{ route('cursos.edit', $curso->cod_curso)}}" class="btn btn-primary">Edit</a></td>
+                <td><a href="{{ route('cursos.edit', $curso->id)}}" class="btn btn-primary">Edit</a></td>
                 <td>
-                        <form action="{{ route('cursos.destroy', $curso->cod_curso)}}" method="post">
+                        <form action="{{ route('cursos.destroy', $curso->id)}}" method="post">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger" type="submit">Deletar</button>

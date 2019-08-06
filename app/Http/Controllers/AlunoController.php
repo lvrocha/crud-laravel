@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use App\Aluno;
+use App\Endereco;
+use App\Aluno_turma_curso;
 
 class AlunoController extends Controller
 {
@@ -14,8 +18,7 @@ class AlunoController extends Controller
      */
     public function index()
     {
-        $alunos = Aluno::all();
-        #dd($alunos);
+        $alunos = Aluno::with('endereco')->get();
         return view('alunos.index', compact('alunos'));
     }
 
@@ -40,26 +43,43 @@ class AlunoController extends Controller
 
         $request->validate([
             'nome'=>'required',
-            'end_cep'=>'required',
-            'end_logradouro'=>'required',
-            'end_cidade'=>'required',
-            'end_estado'=>'required',
-            'end_bairro'=>'required',
-            'end_numero'=>'required'
+            'cep'=>'required',
+            'logradouro'=>'required',
+            'cidade'=>'required',
+            'estado'=>'required',
+            'bairro'=>'required',
+            'numero'=>'required'
         ]);
-        $aluno = new Aluno([
-            'nome' => $request->get('nome'),
-            'situacao' => $request->get('situacao'),
-            'end_cep' => $request->get('end_cep'),
-            'end_logradouro' => $request->get('end_logradouro'),
-            'end_cidade' => $request->get('end_cidade'),
-            'end_estado' => $request->get('end_estado'),
-            'end_bairro' => $request->get('end_bairro'),
-            'end_numero' => $request->get('end_numero'),
-            'end_complemento' => $request->get('end_complemento'),
-            'foto' => $request->get('foto')
-        ]);
-        $aluno->save();
+        $dados = [
+            'nome'=>$request->get('nome'),
+            'situacao'=>$request->get('situacao'),
+            'foto'=>$request->get('foto'),
+            'cep'=>$request->get('cep'),
+            'logradouro'=>$request->get('logradouro'),
+            'cidade'=>$request->get('cidade'),
+            'estado'=>$request->get('estado'),
+            'bairro'=>$request->get('bairro'),
+            'numero'=>$request->get('numero'),
+            'complemento'=>$request->get('complemento')
+        ];
+
+        $aluno = Aluno::create($dados);
+
+        // $endereco = new Endereco;
+        // $endereco->cep = $dados['cep'];
+        // $endereco->logradouro = $dados['logradouro'];
+        // $endereco->cidade = $dados['cidade'];
+        // $endereco->estado = $dados['estado'];
+        // $endereco->bairro = $dados['bairro'];
+        // $endereco->numero = $dados['numero'];
+        // $endereco->complemento = $dados['complemento'];
+        // $endereco->aluno_id = $aluno->id;
+        // $endereco->save();
+
+        $endereco = $aluno->endereco()->create($dados);
+
+        dd($endereco);
+
         return redirect('/alunos')->with('success', 'Aluno foi adicionado');
     }
 
@@ -83,7 +103,11 @@ class AlunoController extends Controller
     public function edit($id)
     {
 
-        $aluno = Aluno::find($id);
+        $aluno = DB::table('alunos')
+                ->join('enderecos', 'alunos.id', '=', 'enderecos.aluno_id')
+                ->where('alunos.id', '=', $id)
+                ->get();
+        $aluno = $aluno['0'];
         return view('alunos.edit', compact('aluno'));
     }
 
@@ -98,26 +122,47 @@ class AlunoController extends Controller
     {
         $request->validate([
             'nome'=>'required',
-            'end_cep'=>'required',
-            'end_logradouro'=>'required',
-            'end_cidade'=>'required',
-            'end_estado'=>'required',
-            'end_bairro'=>'required',
-            'end_numero'=>'required'
+            'cep'=>'required',
+            'logradouro'=>'required',
+            'cidade'=>'required',
+            'estado'=>'required',
+            'bairro'=>'required',
+            'numero'=>'required'
         ]);
 
-        $aluno = Aluno::find($id);
+        $aluno = DB::table('alunos')
+                ->join('enderecos', 'alunos.id', '=', 'enderecos.aluno_id')
+                ->where('alunos.id', '=', $id)
+                ->get();
+        $aluno = $aluno['0'];
         $aluno->nome = $request->get('nome');
         $aluno->situacao = $request->get('situacao');
-        $aluno->end_cep = $request->get('end_cep');
-        $aluno->end_logradouro = $request->get('end_logradouro');
-        $aluno->end_cidade = $request->get('end_cidade');
-        $aluno->end_estado = $request->get('end_estado');
-        $aluno->end_bairro = $request->get('end_bairro');
-        $aluno->end_numero = $request->get('end_numero');
-        $aluno->end_complemento = $request->get('end_complemento');
+        $aluno->cep = $request->get('cep');
+        $aluno->logradouro = $request->get('logradouro');
+        $aluno->cidade = $request->get('cidade');
+        $aluno->estado = $request->get('estado');
+        $aluno->bairro = $request->get('bairro');
+        $aluno->numero = $request->get('numero');
+        $aluno->complemento = $request->get('complemento');
         $aluno->foto = $request->get('foto');
-        $aluno->save();
+        DB::table('alunos')
+            ->where('id', $aluno->id)
+            ->update([
+                'nome' => $aluno->nome,
+                'situacao' => $aluno->situacao,
+                'foto' => $aluno->foto
+                ]);
+        DB::table('enderecos')
+                ->where('id', $aluno->id)
+                ->update([
+                    'cep' => $aluno->cep,
+                    'logradouro' => $aluno->logradouro,
+                    'cidade' => $aluno->cidade,
+                    'estado' => $aluno->estado,
+                    'bairro' => $aluno->bairro,
+                    'numero' => $aluno->numero,
+                    'complemento' => $aluno->complemento
+                    ]);
 
         return redirect('/alunos')->with('success', 'Aluno atualizado');
     }

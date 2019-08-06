@@ -14,7 +14,7 @@ class CreateTurmasTable extends Migration
     public function up()
     {
         Schema::create('turmas', function (Blueprint $table) {
-            $table->bigIncrements('cod_turma');
+            $table->bigIncrements('id');
             $table->string('nome');
             $table->timestamps();
         });

@@ -31,11 +31,11 @@
 
             @foreach ($turmas as $turma)
             <tr>
-                <td>{{$turma->cod_turma}}</td>
+                <td>{{$turma->id}}</td>
                 <td>{{$turma->nome}}</td>
-                <td><a href="{{ route('turmas.edit', $turma->cod_turma)}}" class="btn btn-primary">Edit</a></td>
+                <td><a href="{{ route('turmas.edit', $turma->id)}}" class="btn btn-primary">Edit</a></td>
                 <td>
-                        <form action="{{ route('turmas.destroy', $turma->cod_turma)}}" method="post">
+                        <form action="{{ route('turmas.destroy', $turma->id)}}" method="post">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger" type="submit">Deletar</button>

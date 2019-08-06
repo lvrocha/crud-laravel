@@ -26,7 +26,7 @@
             </ul>
         </div><br />
         @endif
-        <form method="post" action="{{ route('alunos.update', $aluno->cod_aluno) }}">
+        <form method="post" action="{{ route('alunos.update', $aluno->id) }}">
             @method('PATCH')
             @csrf
             <div class="form-group">
@@ -46,37 +46,37 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="end_cep">Cep</label>
+                    <label for="cep">Cep</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" name="end_cep" value="{{ $aluno->end_cep }}">
+                        <input type="text" class="form-control" name="cep" value="{{ $aluno->cep }}">
                         <span class="input-group-btn">
                             <button class="btn btn-info btn-flat" type="button">Buscar Cep</button>
                         </span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="end_logradouro">Logradouro</label>
-                    <input type="text" class="form-control" name="end_logradouro" value="{{ $aluno->end_logradouro }}">
+                    <label for="logradouro">Logradouro</label>
+                    <input type="text" class="form-control" name="logradouro" value="{{ $aluno->logradouro }}">
                 </div>
                 <div class="form-group">
-                    <label for="end_numero">Número</label>
-                    <input type="text" class="form-control" name="end_numero" value="{{ $aluno->end_numero }}">
+                    <label for="numero">Número</label>
+                    <input type="text" class="form-control" name="numero" value="{{ $aluno->numero }}">
                 </div>
                 <div class="form-group">
-                    <label for="end_complemento">Complemento</label>
-                    <input type="text" class="form-control" name="end_complemento" value="{{ $aluno->end_complemento }}">
+                    <label for="complemento">Complemento</label>
+                    <input type="text" class="form-control" name="complemento" value="{{ $aluno->complemento }}">
                 </div>
                 <div class="form-group">
-                    <label for="end_bairro">Bairro</label>
-                    <input type="text" class="form-control" name="end_bairro" value="{{ $aluno->end_bairro }}">
+                    <label for="bairro">Bairro</label>
+                    <input type="text" class="form-control" name="bairro" value="{{ $aluno->bairro }}">
                 </div>
                 <div class="form-group">
-                    <label for="end_cidade">Cidade</label>
-                    <input type="text" class="form-control" name="end_cidade" value="{{ $aluno->end_cidade }}">
+                    <label for="cidade">Cidade</label>
+                    <input type="text" class="form-control" name="cidade" value="{{ $aluno->cidade }}">
                 </div>
                 <div class="form-group">
-                    <label for="end_estado">Estado</label>
-                    <input type="text" class="form-control" name="end_estado" value="{{ $aluno->end_estado }}">
+                    <label for="estado">Estado</label>
+                    <input type="text" class="form-control" name="estado" value="{{ $aluno->estado }}">
                 </div>
                 <div class="form-group">
                     <label for="foto">Foto aluno</label>

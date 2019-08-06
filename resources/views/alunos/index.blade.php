@@ -27,11 +27,11 @@
                 <td>Situacao</td>
                 <td>Cep</td>
                 <td>Logradouro</td>
-                <td>Cidade</td>
-                <td>Estado</td>
-                <td>Bairro</td>
                 <td>Numero</td>
                 <td>Complemento</td>
+                <td>Bairro</td>
+                <td>Cidade</td>
+                <td>Estado</td>
                 <td>Foto</td>
                 <td colspan="2">Ações</td>
             </tr>
@@ -40,20 +40,20 @@
 
             @foreach ($alunos as $aluno)
             <tr>
-                <td>{{$aluno->cod_aluno}}</td>
+                <td>{{$aluno->id}}</td>
                 <td>{{$aluno->nome}}</td>
                 <td>{{$aluno->situacao}}</td>
-                <td>{{$aluno->end_cep}}</td>
-                <td>{{$aluno->end_logradouro}}</td>
-                <td>{{$aluno->end_cidade}}</td>
-                <td>{{$aluno->end_estado}}</td>
-                <td>{{$aluno->end_bairro}}</td>
-                <td>{{$aluno->end_numero}}</td>
-                <td>{{$aluno->end_complemento}}</td>
+                <td>{{$aluno->endereco->cep}}</td>
+                <td>{{$aluno->endereco->logradouro}}</td>
+                <td>{{$aluno->endereco->numero}}</td>
+                <td>{{$aluno->endereco->complemento}}</td>
+                <td>{{$aluno->endereco->bairro}}</td>
+                <td>{{$aluno->endereco->cidade}}</td>
+                <td>{{$aluno->endereco->estado}}</td>
                 <td>{{$aluno->foto}}</td>
-                <td><a href="{{ route('alunos.edit', $aluno->cod_aluno)}}" class="btn btn-primary">Edit</a></td>
+                <td><a href="{{ route('alunos.edit', $aluno->id)}}" class="btn btn-primary">Edit</a></td>
                 <td>
-                        <form action="{{ route('alunos.destroy', $aluno->cod_aluno)}}" method="post">
+                        <form action="{{ route('alunos.destroy', $aluno->id)}}" method="post">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger" type="submit">Deletar</button>

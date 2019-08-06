@@ -3,7 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-<h1>CURSO - EDITAR</h1>
+<h1>TURMA - EDITAR</h1>
 @stop
 
 @section('content')
@@ -14,7 +14,7 @@
 </style>
 <div class="box uper">
     <div class="box-header">
-        <h3 class="box-title">Editar Curso</h3>
+        <h3 class="box-title">Editar Turma</h3>
     </div>
     <div class="box-body">
         @if ($errors->any())
@@ -26,12 +26,12 @@
             </ul>
         </div><br />
         @endif
-        <form method="post" action="{{ route('cursos.update', $curso->cod_curso) }}">
+        <form method="post" action="{{ route('turmas.update', $turma->id) }}">
             @method('PATCH')
             @csrf
             <div class="form-group">
                 <label for="nome">Nome:</label>
-                <input type="text" class="form-control" name="nome" value="{{ $curso->nome }}"/>
+                <input type="text" class="form-control" name="nome" value="{{ $turma->nome }}"/>
             </div>
             <button type="submit" class="btn btn-primary">Atualizar</button>
         </form>

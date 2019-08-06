@@ -39,42 +39,50 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="end_cep">Cep</label>
+                    <label for="cep">Cep</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" name="end_cep">
+                        <input type="text" class="form-control" name="cep">
                         <span class="input-group-btn">
                             <button class="btn btn-info btn-flat" type="button">Buscar Cep</button>
                         </span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="end_logradouro">Logradouro</label>
-                    <input type="text" class="form-control" name="end_logradouro">
+                    <label for="logradouro">Logradouro</label>
+                    <input type="text" class="form-control" name="logradouro">
                 </div>
                 <div class="form-group">
-                    <label for="end_numero">Número</label>
-                    <input type="text" class="form-control" name="end_numero">
+                    <label for="numero">Número</label>
+                    <input type="text" class="form-control" name="numero">
                 </div>
                 <div class="form-group">
-                    <label for="end_complemento">Complemento</label>
-                    <input type="text" class="form-control" name="end_complemento">
+                    <label for="complemento">Complemento</label>
+                    <input type="text" class="form-control" name="complemento">
                 </div>
                 <div class="form-group">
-                    <label for="end_bairro">Bairro</label>
-                    <input type="text" class="form-control" name="end_bairro">
+                    <label for="bairro">Bairro</label>
+                    <input type="text" class="form-control" name="bairro">
                 </div>
                 <div class="form-group">
-                    <label for="end_cidade">Cidade</label>
-                    <input type="text" class="form-control" name="end_cidade">
+                    <label for="cidade">Cidade</label>
+                    <input type="text" class="form-control" name="cidade">
                 </div>
                 <div class="form-group">
-                    <label for="end_estado">Estado</label>
-                    <input type="text" class="form-control" name="end_estado">
+                    <label for="estado">Estado</label>
+                    <input type="text" class="form-control" name="estado">
                 </div>
                 <div class="form-group">
                     <label for="foto">Foto aluno</label>
                     <input type="file" id="foto">
                     <p class="help-block">Anexe a foto do aluno.</p>
+                </div>
+                <div class="form-group">
+                    <label for="curso">Curso</label>
+                    <input type="text" class="form-control" name="curso">
+                </div>
+                <div class="form-group">
+                    <label for="turma">Turma</label>
+                    <input type="text" class="form-control" name="turma">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Adicionar</button>
