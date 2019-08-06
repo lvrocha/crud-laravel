@@ -108,11 +108,11 @@ return [
     */
 
     'menu' => [
-        'MAIN NAVIGATION',
+        'MENU PRINCIPAL',
         [
-            'text' => 'Blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text' => 'DASHBOARD',
+            'url'  => 'home',
+            'icon' => 'bar-chart',
         ],
         [
             'text'        => 'Pages',
