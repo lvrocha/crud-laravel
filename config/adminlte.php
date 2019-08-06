@@ -126,6 +126,12 @@ return [
             'url'         => 'cursos',
             'icon'        => 'book',
         ],
+        'GERENCIAR TURMAS',
+        [
+            'text'        => 'Turmas',
+            'url'         => 'turmas',
+            'icon'        => 'graduation-cap',
+        ],
 
     ],
 
