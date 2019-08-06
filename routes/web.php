@@ -19,3 +19,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('alunos', 'AlunoController')->middleware('auth');
+Route::resource('cursos', 'CursoController')->middleware('auth');

@@ -120,6 +120,12 @@ return [
             'url'         => 'alunos',
             'icon'        => 'users',
         ],
+        'GERENCIAR CURSOS',
+        [
+            'text'        => 'Cursos',
+            'url'         => 'cursos',
+            'icon'        => 'book',
+        ],
 
     ],
 
