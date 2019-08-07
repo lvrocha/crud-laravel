@@ -7,6 +7,7 @@
 @stop
 
 @section('content')
+
 <style>
     .uper{
         margin-top: 40px;
@@ -32,6 +33,8 @@
                 <td>Bairro</td>
                 <td>Cidade</td>
                 <td>Estado</td>
+                <td>Curso</td>
+                <td>Turma</td>
                 <td>Foto</td>
                 <td colspan="2">Ações</td>
             </tr>
@@ -50,6 +53,8 @@
                 <td>{{$aluno->endereco->bairro}}</td>
                 <td>{{$aluno->endereco->cidade}}</td>
                 <td>{{$aluno->endereco->estado}}</td>
+                <td>{{$aluno->aluno_turma_cursos->turma_id}}</td>
+                <td>{{$aluno->aluno_turma_cursos->curso_id}}</td>
                 <td>{{$aluno->foto}}</td>
                 <td><a href="{{ route('alunos.edit', $aluno->id)}}" class="btn btn-primary">Edit</a></td>
                 <td>

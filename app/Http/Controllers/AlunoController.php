@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Aluno;
 use App\Endereco;
+use App\Curso;
+use App\Turma;
 use App\Aluno_turma_curso;
 
 class AlunoController extends Controller
@@ -18,7 +20,7 @@ class AlunoController extends Controller
      */
     public function index()
     {
-        $alunos = Aluno::with('endereco')->get();
+        $alunos = Aluno::with('endereco','aluno_turma_cursos')->get();
         return view('alunos.index', compact('alunos'));
     }
 
@@ -29,7 +31,9 @@ class AlunoController extends Controller
      */
     public function create()
     {
-        return view('alunos.create');
+        $cursos = Curso::all();
+        $turmas = Turma::all();
+        return view('alunos.create', compact('cursos', 'turmas'));
     }
 
     /**
@@ -48,7 +52,10 @@ class AlunoController extends Controller
             'cidade'=>'required',
             'estado'=>'required',
             'bairro'=>'required',
-            'numero'=>'required'
+            'numero'=>'required',
+            'curso_id'=>'required',
+            'turma_id'=>'required',
+            'data_matricula'=>'required'
         ]);
         $dados = [
             'nome'=>$request->get('nome'),
@@ -60,8 +67,13 @@ class AlunoController extends Controller
             'estado'=>$request->get('estado'),
             'bairro'=>$request->get('bairro'),
             'numero'=>$request->get('numero'),
-            'complemento'=>$request->get('complemento')
+            'complemento'=>$request->get('complemento'),
+            'curso_id'=>$request->get('curso_id'),
+            'turma_id'=>$request->get('turma_id'),
+            'data_matricula'=>$request->get('data_matricula')
         ];
+
+        dd($dados);
 
         $aluno = Aluno::create($dados);
 
@@ -78,7 +90,9 @@ class AlunoController extends Controller
 
         $endereco = $aluno->endereco()->create($dados);
 
-        dd($endereco);
+        $aluno_turma_curso = $aluno->aluno_turma_cursos();
+
+        dd($aluno_turma_curso);
 
         return redirect('/alunos')->with('success', 'Aluno foi adicionado');
     }
@@ -103,12 +117,12 @@ class AlunoController extends Controller
     public function edit($id)
     {
 
-        $aluno = DB::table('alunos')
-                ->join('enderecos', 'alunos.id', '=', 'enderecos.aluno_id')
-                ->where('alunos.id', '=', $id)
-                ->get();
-        $aluno = $aluno['0'];
-        return view('alunos.edit', compact('aluno'));
+        $aluno = Aluno::with('endereco','aluno_turma_cursos')->find($id);
+        #dd($aluno);
+        #$aluno = $aluno['0'];
+        $cursos = Curso::all();
+        $turmas = Turma::all();
+        return view('alunos.edit', compact('aluno','cursos','turmas'));
     }
 
     /**

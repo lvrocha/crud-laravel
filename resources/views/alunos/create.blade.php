@@ -78,11 +78,25 @@
                 </div>
                 <div class="form-group">
                     <label for="curso">Curso</label>
-                    <input type="text" class="form-control" name="curso">
+                    <select  class="form-control" name="curso_id" id="curso_id">
+                        <option value="">Escolha</option>
+                        @foreach ($cursos as $curso)
+                            <option value="{{$curso->id}}">{{$curso->nome}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="turma">Turma</label>
-                    <input type="text" class="form-control" name="turma">
+                    <select  class="form-control" name="turma_id" id="turma_id">
+                        <option value="">Escolha</option>
+                        @foreach ($turmas as $turma)
+                            <option value="{{$turma->id}}">{{$turma->nome}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="data_matricula">Data Matricula</label>
+                    <input type="date" class="form-control" name="data_matricula">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Adicionar</button>

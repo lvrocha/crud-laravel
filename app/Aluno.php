@@ -15,4 +15,10 @@ class Aluno extends Model
     public function endereco(){
         return $this->hasOne(Endereco::class);
     }
+
+    public function aluno_turma_cursos(){
+        return $this->hasMany(Aluno_turma_curso::class);
+    }
+
+
 }
